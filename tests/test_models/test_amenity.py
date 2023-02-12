@@ -2,9 +2,9 @@
 """Defines unittests for models/amenity.py.
 
 Unittest classes:
-   TestAmenity_instantiation
-   TestAmenity_save
-   TestAmenity_to_dict
+    TestAmenity_instantiation
+    TestAmenity_save
+    TestAmenity_to_dict
 """
 import os
 import models
@@ -139,7 +139,7 @@ class TestAmenity_save(unittest.TestCase):
 class TestAmenity_to_dict(unittest.TestCase):
     """Unittests for testing to_dict method of the Amenity class."""
 
-    def test_to_ dict_type(self): 
+    def test_to_dict_type(self):
         self.assertTrue(dict, type(Amenity().to_dict()))
 
     def test_to_dict_contains_correct_keys(self):
@@ -169,11 +169,11 @@ class TestAmenity_to_dict(unittest.TestCase):
         am.id = "123456"
         am.created_at = am.updated_at = dt
         tdict = {
-                'id': '123456',
-                '__class__': 'Amenity',
-                'created_at': dt.isoformat(),
-                'updated_at': dt.isoformat(),
-                }
+            'id': '123456',
+            '__class__': 'Amenity',
+            'created_at': dt.isoformat(),
+            'updated_at': dt.isoformat(),
+        }
         self.assertDictEqual(am.to_dict(), tdict)
 
     def test_contrast_to_dict_dunder_dict(self):
@@ -184,6 +184,7 @@ class TestAmenity_to_dict(unittest.TestCase):
         am = Amenity()
         with self.assertRaises(TypeError):
             am.to_dict(None)
+
 
 if __name__ == "__main__":
     unittest.main()

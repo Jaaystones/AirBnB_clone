@@ -2,17 +2,17 @@
 """Defines unittests for models/review.py.
 
 Unittest classes:
-TestReview_instantiation
-TestReview_save
-TestReview_to_dict
+    TestReview_instantiation
+    TestReview_save
+    TestReview_to_dict
 """
-
 import os
 import models
 import unittest
 from datetime import datetime
 from time import sleep
 from models.review import Review
+
 
 class TestReview_instantiation(unittest.TestCase):
     """Unittests for testing instantiation of the Review class."""
@@ -95,6 +95,7 @@ class TestReview_instantiation(unittest.TestCase):
         with self.assertRaises(TypeError):
             Review(id=None, created_at=None, updated_at=None)
 
+
 class TestReview_save(unittest.TestCase):
     """Unittests for testing save method of the Review class."""
 
@@ -145,6 +146,7 @@ class TestReview_save(unittest.TestCase):
         with open("file.json", "r") as f:
             self.assertIn(rvid, f.read())
 
+
 class TestReview_to_dict(unittest.TestCase):
     """Unittests for testing to_dict method of the Review class."""
 
@@ -178,11 +180,11 @@ class TestReview_to_dict(unittest.TestCase):
         rv.id = "123456"
         rv.created_at = rv.updated_at = dt
         tdict = {
-                'id': '123456',
-                '__class__': 'Review',
-                'created_at': dt.isoformat(),
-                'updated_at': dt.isoformat(),
-                }
+            'id': '123456',
+            '__class__': 'Review',
+            'created_at': dt.isoformat(),
+            'updated_at': dt.isoformat(),
+        }
         self.assertDictEqual(rv.to_dict(), tdict)
 
     def test_contrast_to_dict_dunder_dict(self):
@@ -194,5 +196,6 @@ class TestReview_to_dict(unittest.TestCase):
         with self.assertRaises(TypeError):
             rv.to_dict(None)
 
-    if __name__ == "__main__":
-        unittest.main()
+
+if __name__ == "__main__":
+    unittest.main()

@@ -1,17 +1,18 @@
 #!/usr/bin/python3
 """Defines unittests for models/place.py.
-Unittest classes:
-   TestPlace_instantiation
-   TestPlace_save
-   TestPlace_to_dict
-"""
 
+Unittest classes:
+    TestPlace_instantiation
+    TestPlace_save
+    TestPlace_to_dict
+"""
 import os
 import models
 import unittest
 from datetime import datetime
 from time import sleep
 from models.place import Place
+
 
 class TestPlace_instantiation(unittest.TestCase):
     """Unittests for testing instantiation of the Place class."""
@@ -142,6 +143,7 @@ class TestPlace_instantiation(unittest.TestCase):
         with self.assertRaises(TypeError):
             Place(id=None, created_at=None, updated_at=None)
 
+
 class TestPlace_save(unittest.TestCase):
     """Unittests for testing save method of the Place class."""
 
@@ -151,6 +153,7 @@ class TestPlace_save(unittest.TestCase):
             os.rename("file.json", "tmp")
         except IOError:
             pass
+
     def tearDown(self):
         try:
             os.remove("file.json")
@@ -191,6 +194,7 @@ class TestPlace_save(unittest.TestCase):
         with open("file.json", "r") as f:
             self.assertIn(plid, f.read())
 
+
 class TestPlace_to_dict(unittest.TestCase):
     """Unittests for testing to_dict method of the Place class."""
 
@@ -224,11 +228,11 @@ class TestPlace_to_dict(unittest.TestCase):
         pl.id = "123456"
         pl.created_at = pl.updated_at = dt
         tdict = {
-                'id': '123456',
-                '__class__': 'Place',
-                'created_at': dt.isoformat(),
-                'updated_at': dt.isoformat(),
-                }
+            'id': '123456',
+            '__class__': 'Place',
+            'created_at': dt.isoformat(),
+            'updated_at': dt.isoformat(),
+        }
         self.assertDictEqual(pl.to_dict(), tdict)
 
     def test_contrast_to_dict_dunder_dict(self):
@@ -239,6 +243,7 @@ class TestPlace_to_dict(unittest.TestCase):
         pl = Place()
         with self.assertRaises(TypeError):
             pl.to_dict(None)
+
 
 if __name__ == "__main__":
     unittest.main()

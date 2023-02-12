@@ -2,17 +2,17 @@
 """Defines unittests for models/state.py.
 
 Unittest classes:
-   TestState_instantiation
-   TestState_save
-   TestState_to_dict
+    TestState_instantiation
+    TestState_save
+    TestState_to_dict
 """
-
 import os
 import models
 import unittest
 from datetime import datetime
 from time import sleep
 from models.state import State
+
 
 class TestState_instantiation(unittest.TestCase):
     """Unittests for testing instantiation of the State class."""
@@ -83,6 +83,7 @@ class TestState_instantiation(unittest.TestCase):
         with self.assertRaises(TypeError):
             State(id=None, created_at=None, updated_at=None)
 
+
 class TestState_save(unittest.TestCase):
     """Unittests for testing save method of the State class."""
 
@@ -133,9 +134,10 @@ class TestState_save(unittest.TestCase):
         with open("file.json", "r") as f:
             self.assertIn(stid, f.read())
 
+
 class TestState_to_dict(unittest.TestCase):
     """Unittests for testing to_dict method of the State class."""
-    
+
     def test_to_dict_type(self):
         self.assertTrue(dict, type(State().to_dict()))
 
@@ -166,11 +168,11 @@ class TestState_to_dict(unittest.TestCase):
         st.id = "123456"
         st.created_at = st.updated_at = dt
         tdict = {
-                'id': '123456',
-                '__class__': 'State',
-                'created_at': dt.isoformat(),
-                'updated_at': dt.isoformat(),
-                }
+            'id': '123456',
+            '__class__': 'State',
+            'created_at': dt.isoformat(),
+            'updated_at': dt.isoformat(),
+        }
         self.assertDictEqual(st.to_dict(), tdict)
 
     def test_contrast_to_dict_dunder_dict(self):
@@ -179,8 +181,9 @@ class TestState_to_dict(unittest.TestCase):
 
     def test_to_dict_with_arg(self):
         st = State()
-        with self.assertRaises(TypeError)
-        st.to_dict(None)
+        with self.assertRaises(TypeError):
+            st.to_dict(None)
+
 
 if __name__ == "__main__":
     unittest.main()

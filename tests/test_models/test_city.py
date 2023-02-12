@@ -2,11 +2,10 @@
 """Defines unittests for models/city.py.
 
 Unittest classes:
-   TestCity_instantiation
-   TestCity_save
-   TestCity_to_dict
-   """
-
+    TestCity_instantiation
+    TestCity_save
+    TestCity_to_dict
+"""
 import os
 import models
 import unittest
@@ -90,6 +89,7 @@ class TestCity_instantiation(unittest.TestCase):
         with self.assertRaises(TypeError):
             City(id=None, created_at=None, updated_at=None)
 
+
 class TestCity_save(unittest.TestCase):
     """Unittests for testing save method of the City class."""
 
@@ -140,6 +140,7 @@ class TestCity_save(unittest.TestCase):
         with open("file.json", "r") as f:
             self.assertIn(cyid, f.read())
 
+
 class TestCity_to_dict(unittest.TestCase):
     """Unittests for testing to_dict method of the City class."""
 
@@ -173,11 +174,11 @@ class TestCity_to_dict(unittest.TestCase):
         cy.id = "123456"
         cy.created_at = cy.updated_at = dt
         tdict = {
-                'id': '123456',
-                '__class__': 'City',
-                'created_at': dt.isoformat(),
-                'updated_at': dt.isoformat(),
-                }
+            'id': '123456',
+            '__class__': 'City',
+            'created_at': dt.isoformat(),
+            'updated_at': dt.isoformat(),
+        }
         self.assertDictEqual(cy.to_dict(), tdict)
 
     def test_contrast_to_dict_dunder_dict(self):
@@ -189,6 +190,6 @@ class TestCity_to_dict(unittest.TestCase):
         with self.assertRaises(TypeError):
             cy.to_dict(None)
 
-if __name__ == "__main__":
-     unittest.main()
 
+if __name__ == "__main__":
+    unittest.main()

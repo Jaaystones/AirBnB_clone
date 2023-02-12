@@ -2,9 +2,9 @@
 """Defines unittests for models/user.py.
 
 Unittest classes:
-   TestUser_instantiation
-   TestUser_save
-   TestUser_to_dict
+    TestUser_instantiation
+    TestUser_save
+    TestUser_to_dict
 """
 import os
 import models
@@ -174,11 +174,11 @@ class TestUser_to_dict(unittest.TestCase):
         us.id = "123456"
         us.created_at = us.updated_at = dt
         tdict = {
-                'id': '123456',
-                '__class__': 'User',
-                'created_at': dt.isoformat(),
-                'updated_at': dt.isoformat(),
-                }
+            'id': '123456',
+            '__class__': 'User',
+            'created_at': dt.isoformat(),
+            'updated_at': dt.isoformat(),
+        }
         self.assertDictEqual(us.to_dict(), tdict)
 
     def test_contrast_to_dict_dunder_dict(self):
@@ -189,6 +189,7 @@ class TestUser_to_dict(unittest.TestCase):
         us = User()
         with self.assertRaises(TypeError):
             us.to_dict(None)
+
 
 if __name__ == "__main__":
     unittest.main()

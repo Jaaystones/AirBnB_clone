@@ -2,17 +2,17 @@
 """Defines unittests for models/base_model.py.
 
 Unittest classes:
-   TestBaseModel_instantiation
-   TestBaseModel_save
-   TestBaseModel_to_dict
-   """
-   
+    TestBaseModel_instantiation
+    TestBaseModel_save
+    TestBaseModel_to_dict
+"""
 import os
 import models
 import unittest
 from datetime import datetime
 from time import sleep
 from models.base_model import BaseModel
+
 
 class TestBaseModel_instantiation(unittest.TestCase):
     """Unittests for testing instantiation of the BaseModel class."""
@@ -85,9 +85,10 @@ class TestBaseModel_instantiation(unittest.TestCase):
         self.assertEqual(bm.created_at, dt)
         self.assertEqual(bm.updated_at, dt)
 
+
 class TestBaseModel_save(unittest.TestCase):
     """Unittests for testing save method of the BaseModel class."""
-    
+
     @classmethod
     def setUp(self):
         try:
@@ -136,6 +137,7 @@ class TestBaseModel_save(unittest.TestCase):
         with open("file.json", "r") as f:
             self.assertIn(bmid, f.read())
 
+
 class TestBaseModel_to_dict(unittest.TestCase):
     """Unittests for testing to_dict method of the BaseModel class."""
 
@@ -169,11 +171,11 @@ class TestBaseModel_to_dict(unittest.TestCase):
         bm.id = "123456"
         bm.created_at = bm.updated_at = dt
         tdict = {
-                'id': '123456',
-                '__class__': 'BaseModel',
-                'created_at': dt.isoformat(),
-                'updated_at': dt.isoformat()
-                }
+            'id': '123456',
+            '__class__': 'BaseModel',
+            'created_at': dt.isoformat(),
+            'updated_at': dt.isoformat()
+        }
         self.assertDictEqual(bm.to_dict(), tdict)
 
     def test_contrast_to_dict_dunder_dict(self):
@@ -185,5 +187,6 @@ class TestBaseModel_to_dict(unittest.TestCase):
         with self.assertRaises(TypeError):
             bm.to_dict(None)
 
+
 if __name__ == "__main__":
-     unittest.main()
+    unittest.main()
